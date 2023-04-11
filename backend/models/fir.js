@@ -64,4 +64,4 @@ const Fir = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("User", Fir);
+module.exports = mongoose.model("Fir", Fir);

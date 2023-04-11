@@ -37,14 +37,16 @@ export default function AdminSignUP() {
       chk_exp.test(aadharNo) &&
       password
     ) {
-      history("/AdminLogin");
-      // axios.post("http://localhost:9002/AdminSignUP", user)
-      // .then( res => {
-      //     alert(res.data.message)
-      //     history.push("/AdminLogin")
-      // }).catch(err=>{
-      //   alert(err);
-      // })
+      // history("/AdminLogin");
+      axios
+        .post("http://localhost:9002/AdminSignUP", user)
+        .then((res) => {
+          alert(res.data.message);
+          history("/AdminLogin");
+        })
+        .catch((err) => {
+          alert(err);
+        });
     } else {
       alert("invalid input");
     }

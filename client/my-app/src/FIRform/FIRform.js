@@ -112,12 +112,10 @@ export default function FIRForm() {
       particularsOfPropertiesStolenInvolved
     ) {
       console.log(user);
-      //     axios.post("http://localhost:9002/FIRform", user)
-      //     .then( res => {
-      //         alert(res.data.message)
-      //         history.push("/Footer")
-      //     })
-      // }
+      axios.post("http://localhost:9002/firRegister", user).then((res) => {
+        alert(res.data.message);
+        history.push("/Footer");
+      });
     } else {
       alert("invalid input");
     }
