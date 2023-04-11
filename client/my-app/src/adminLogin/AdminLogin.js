@@ -5,7 +5,6 @@ import Navbar from "../Navbar";
 import { useNavigate } from "react-router-dom";
 
 export default function Adminlogin({ setLoginUser }) {
- 
   const navigate = useNavigate();
   const [user, setUser] = useState({
     email: "",
@@ -22,21 +21,24 @@ export default function Adminlogin({ setLoginUser }) {
   };
 
   const AdminLogin = () => {
-    
-    navigate("/FIRForm",{state : user});
-    //  axios.post("http://localhost:9002/AdminLogin", user)
-    //  .then(res => {
-    //      alert(res.data.message)
-    //    //  setLoginUser(res.data.user)
-    //      navigate("/FIRForm")
-    //  })
+    // navigate("/FIRForm",{state : user});
+    axios
+      .post("http://localhost:9002/AdminLogin", user)
+      .then((res) => {
+        // alert(res.data.message);
+        console.log(res);
+        //  setLoginUser(res.data.user)
+        navigate("/FIRForm", { state: user });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
     <>
       <Navbar isLogIn={isLogIn} />
       <div className="log-container ">
-       
         <form id="form" className="log-form">
           <a href="/AdminSignUP" className="log-sign">
             <h2>SIGN UP!</h2>

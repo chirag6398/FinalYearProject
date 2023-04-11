@@ -5,6 +5,7 @@ import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 
 export default function FIRForm() {
+  const navigate = useNavigate();
   let url = "../adminSignUP/AdminSignUP";
 
   const { state } = useLocation();
@@ -122,12 +123,10 @@ export default function FIRForm() {
       particularsOfPropertiesStolenInvolved
     ) {
       console.log(user);
-      //     axios.post("http://localhost:9002/FIRform", user)
-      //     .then( res => {
-      //         alert(res.data.message)
-      //         history.push("/Footer")
-      //     })
-      // }
+      axios.post("http://localhost:9002/firRegister", user).then((res) => {
+        alert(res.data.message);
+        navigate("/Footer");
+      });
     } else {
       alert("invalid input");
     }
