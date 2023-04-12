@@ -4,11 +4,15 @@ const Fir = new mongoose.Schema(
   {
     userId: {
       type: mongoose.Schema.Types.ObjectId,
-      required: true,
     },
     beatNo: {
       type: String,
       required: true,
+    },
+    status: {
+      type: String,
+      enum: ["pending", "approved", "reject", "hold"],
+      default: "pending",
     },
     complaintUser: {
       address: {
@@ -57,6 +61,12 @@ const Fir = new mongoose.Schema(
         type: String,
       },
       address: {
+        type: String,
+      },
+      colony: {
+        type: String,
+      },
+      pinCode: {
         type: String,
       },
     },

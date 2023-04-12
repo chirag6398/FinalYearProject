@@ -11,7 +11,7 @@ module.exports = {
       "complaintUser.address": body.complainantAddress,
       "complaintUser.dob": body.complainantDateOfBirth,
       "complaintUser.name": body.complainantName,
-      "complaintUser.aadharNo": body.complaintAadharNo,
+      "complaintUser.aadharNo": body.complainantAadharNo,
       "complaintUser.nationality": body.complainantNationality,
       "complaintUser.occupation": body.complainantOccupation,
       "crimeDetails.crime": body.detailsOfCrime,
@@ -22,8 +22,27 @@ module.exports = {
       "crimeDetails.day": body.occurenceDay,
       "crimeDetails.state": body.crimeState,
       "crimeDetails.address": body.complainantAddress,
+      "crimeDetails.colony": body.crimeColony,
+      "crimeDetails.pinCode": body.crimePinCode,
     });
 
-    console.log(fir);
+    fir
+      .save()
+      .then(function (result) {
+        return res.send({ message: "fir created" });
+      })
+      .catch(function (err) {
+        console.log(err);
+        return res.status(401).send({ message: "error" });
+      });
+  },
+  getFirs: function (req, res) {
+    Fir.find({})
+      .then((result) => {
+        return res.send(result);
+      })
+      .catch((err) => {
+        return res.status(500).send({ message: "internal server error" });
+      });
   },
 };
