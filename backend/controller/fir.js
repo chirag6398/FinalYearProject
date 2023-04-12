@@ -21,7 +21,6 @@ module.exports = {
       "crimeDetails.time": body.occurenceTime,
       "crimeDetails.day": body.occurenceDay,
       "crimeDetails.state": body.crimeState,
-      "crimeDetails.address": body.complainantAddress,
       "crimeDetails.colony": body.crimeColony,
       "crimeDetails.pinCode": body.crimePinCode,
     });
