@@ -21,13 +21,11 @@ export default function Adminlogin({ setLoginUser }) {
   };
 
   const AdminLogin = () => {
-    // navigate("/FIRForm",{state : user});
     axios
       .post("http://localhost:9002/AdminLogin", user)
       .then((res) => {
-        // alert(res.data.message);
         console.log(res);
-        //  setLoginUser(res.data.user)
+
         navigate("/FIRForm", { state: user });
       })
       .catch((err) => {
