@@ -69,6 +69,10 @@ const Fir = new mongoose.Schema(
       pinCode: {
         type: String,
       },
+      policeMenId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
     },
   },
   { timestamps: true }
