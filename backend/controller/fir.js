@@ -44,4 +44,15 @@ module.exports = {
         return res.status(500).send({ message: "internal server error" });
       });
   },
+  getFirsByPoliceMenId: function (req, res) {
+    var policeMenId = req.params.policMenId;
+    Fir.find({ policeMenId })
+      .then((result) => {
+        return res.status(200).send(result);
+      })
+      .catch((err) => {
+        console.log(err);
+        return res.status(500).send({ message: "internal server error" });
+      });
+  },
 };

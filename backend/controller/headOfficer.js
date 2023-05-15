@@ -34,6 +34,7 @@ module.exports = {
             userType: "policeMen",
           });
           newUser.password = await hashPassword(newUser.password);
+
           const status = await newUser.save();
           if (status) {
             console.log(status);
@@ -68,6 +69,7 @@ module.exports = {
         }
       })
       .catch((err) => {
+        console.log(err);
         return res.status(500).send({ message: "internal server error" });
       });
   },

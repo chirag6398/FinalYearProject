@@ -30,6 +30,7 @@ module.exports = {
             firstName,
             lastName,
             password,
+            userType: "citizen",
           });
           newUser.password = await hashPassword(newUser.password);
           const status = await newUser.save();
