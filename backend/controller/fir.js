@@ -55,4 +55,14 @@ module.exports = {
         return res.status(500).send({ message: "internal server error" });
       });
   },
+  getFirById: async (req, res) => {
+    try {
+      var firId = req.params.id;
+      var result = await Fir.findById({ _id: firId });
+      return res.status(200).send(result);
+    } catch (err) {
+      console.log(err);
+      return res.status(400).send({ message: "pls try later server error" });
+    }
+  },
 };
