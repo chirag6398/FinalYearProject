@@ -1,6 +1,4 @@
 const User = require("../models/user");
-var bcrypt = require("bcryptjs");
-// const generateToken = require("../service/commonService").generateToken;
 var hashPassword = require("../service/commonService").hashPassword;
 var FirModel = require("../models/fir");
 
