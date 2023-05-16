@@ -73,4 +73,13 @@ module.exports = {
         return res.status(500).send({ message: "internal server error" });
       });
   },
+  policeMenList: async (req, res) => {
+    try {
+      var list = await User.find({ userType: "policeMen" });
+      return res.send(list);
+    } catch (err) {
+      console.log(err);
+      return res.status(400).send({ message: "pls try later" });
+    }
+  },
 };

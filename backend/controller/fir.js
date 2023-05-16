@@ -65,4 +65,19 @@ module.exports = {
       return res.status(400).send({ message: "pls try later server error" });
     }
   },
+  updateFirStatus: async (req, res) => {
+    try {
+      var updatedStatus = req.body.status;
+      var firId = req.body.id;
+      var isUpdated = await Fir.updateOne(
+        { _id: firId },
+        { status: updatedStatus }
+      );
+      console.log(isUpdated);
+      return res.status(200).send({ message: "status updated" });
+    } catch (err) {
+      console.log(err);
+      return res.status(400).send({ message: "pls try later server error" });
+    }
+  },
 };
