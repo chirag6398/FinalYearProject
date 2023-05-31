@@ -99,4 +99,18 @@ module.exports = {
       return res.status(400).send({ message: "pls try later" });
     }
   },
+  policeMenUpdateStatus: async (req, res) => {
+    try {
+      var result = await FirModel.findOneAndUpdate(
+        { _id: req.body.firId },
+        { status: req.body.status }
+      );
+      if (result)
+        return res.status(200).send({ message: "fir status updated" });
+      else return res.status(500).send({ message: "pls try later" });
+    } catch (err) {
+      console.log(err);
+      return res.status(400).send({ message: "pls try later" });
+    }
+  },
 };

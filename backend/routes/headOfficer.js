@@ -8,5 +8,8 @@ route.post(
 route.get("/getPoliceMenList", headOfficerController.policeMenList);
 route.post("/assignFirToPoliceMen", headOfficerController.assignFirToPoliceMen);
 route.post("/approvedFir", headOfficerController.approvedFir);
-
+route.post(
+  "/policeMenUpdateStatus",
+  headOfficerController.policeMenUpdateStatus
+);
 module.exports = route;
