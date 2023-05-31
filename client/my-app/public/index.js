@@ -36,8 +36,9 @@ function setMapDetails(log, lat) {
 function fetchCoordinates() {
   const date = new Date();
   const hours = date.getHours();
-  const minutes = "0" + date.getMinutes();
+  const minutes = date.getMinutes();
   const day = date.getDay();
+  console.log("called");
 
   const time = `${hours}:${minutes}`;
   var url = `http://cms-env.eba-bqgbv5gm.us-east-1.elasticbeanstalk.com/get`;
@@ -53,6 +54,7 @@ function fetchCoordinates() {
   fetch(`${url}?${searchParams}`)
     .then((response) => response.json())
     .then((data) => {
+      console.log(data);
       console.log(data.Location.addresses);
       var address = data.Address;
       var log = data.Location.addresses.longitude;

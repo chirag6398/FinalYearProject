@@ -14,8 +14,22 @@ module.exports = {
         password,
         reEnterPassword,
         lastName,
+        state,
+        district,
+        address,
+        pincode,
       } = req.body;
-      if (!aadharNo || !email || !password || !firstName || !lastName) {
+      if (
+        !aadharNo ||
+        !email ||
+        !password ||
+        !firstName ||
+        !lastName ||
+        !state ||
+        !district ||
+        !address ||
+        !pincode
+      ) {
         return res.status(401).json({ message: "plz fill all fields" });
       } else {
         const isUserExist = await User.findOne({
@@ -34,6 +48,10 @@ module.exports = {
             lastName,
             password,
             userType: "policeMen",
+            address,
+            state,
+            pincode,
+            district,
           });
           newUser.password = await hashPassword(newUser.password);
 
