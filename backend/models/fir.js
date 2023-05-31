@@ -11,7 +11,7 @@ const Fir = new mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ["pending", "approved", "reject", "hold"],
+      enum: ["pending", "approved", "reject", "hold", "assigned", "accepted"],
       default: "pending",
     },
     complaintUser: {

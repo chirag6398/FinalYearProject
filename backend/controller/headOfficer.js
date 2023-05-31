@@ -1,6 +1,7 @@
 const User = require("../models/user");
 var hashPassword = require("../service/commonService").hashPassword;
 var FirModel = require("../models/fir");
+var sendMail = require("../service/mailService").sendAccountActivateMailHandler;
 
 module.exports = {
   createPoliceMan: async (req, res) => {
@@ -17,7 +18,10 @@ module.exports = {
       if (!aadharNo || !email || !password || !firstName || !lastName) {
         return res.status(401).json({ message: "plz fill all fields" });
       } else {
-        const isUserExist = await User.findOne({ email });
+        const isUserExist = await User.findOne({
+          email,
+          userType: "policeMen",
+        });
 
         if (isUserExist) {
           console.log("user exist");
@@ -52,6 +56,8 @@ module.exports = {
     }
   },
   assignFirToPoliceMen: (req, res) => {
+    console.log(req.body);
+
     var firId = req.body.firId;
     var policeMenFir = req.body.policeMenId;
 
@@ -59,6 +65,8 @@ module.exports = {
       .then(async (fir) => {
         try {
           fir.policeMenId = policeMenFir;
+          fir.status = "assigned";
+          console.log(fir);
           await fir.save();
           return res.status(200).send({ message: "assign successfully" });
         } catch (err) {
@@ -75,6 +83,17 @@ module.exports = {
     try {
       var list = await User.find({ userType: "policeMen" });
       return res.send(list);
+    } catch (err) {
+      console.log(err);
+      return res.status(400).send({ message: "pls try later" });
+    }
+  },
+  approvedFir: async (req, res) => {
+    try {
+      var fir = await FirModel.findOne({ _id: req.body.firId });
+      fir.status = "approved";
+      await fir.save();
+      return res.status(200).send({ message: "fir approved successfully" });
     } catch (err) {
       console.log(err);
       return res.status(400).send({ message: "pls try later" });

@@ -6,5 +6,7 @@ route.post(
   headOfficerController.createPoliceMan
 );
 route.get("/getPoliceMenList", headOfficerController.policeMenList);
-route.put("/assignFirToPoliceMen", headOfficerController.assignFirToPoliceMen);
+route.post("/assignFirToPoliceMen", headOfficerController.assignFirToPoliceMen);
+route.post("/approvedFir", headOfficerController.approvedFir);
+
 module.exports = route;

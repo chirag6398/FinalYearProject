@@ -19,6 +19,7 @@ app.use(cors());
 
 app.use(require("./routes/user"));
 app.use(require("./routes/fir"));
+app.use(require("./routes/headOfficer"));
 
 app.listen(process.env.PORT, () => {
   console.log(`${process.env.PORT} started`);
